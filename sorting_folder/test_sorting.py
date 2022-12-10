@@ -11,8 +11,7 @@ EXTENSIONS = {
     "audio": ('.mp3', '.ogg', '.wav', '.amr'),
     "archives": ('.zip', '.gz', '.tar')
 }
-folder = Path("/Users/olganazarenko/Downloads")
-file_destination = "/Users/olganazarenko/Downloads"
+
 
 def clean(folder: Path):
     for file in folder.iterdir():
@@ -36,7 +35,7 @@ def clean(folder: Path):
             sort_files(file, folder)
 
         # extracts the keys of the dictionary and compare to the existed
-        else file.name not in EXTENSIONS.keys():
+        elif file.name not in EXTENSIONS.keys():
             subfolder = file
 # Get the list of all files and directories in current working directory, but the empty one. The rest remove.
             if not os.listdir(subfolder):
@@ -86,7 +85,7 @@ def archive_unpack(folder: Path, file: Path):
 # creating a new directory without any raised exceptions
     archive_folder.mkdir(exist_ok=True)
 # with shutil we unpack the archive and move it to a new location.
-    shutil.unpack_archive('/Users/olganazarenko/Downloads/....zip', archive_folder)
+    shutil.unpack_archive(folder.joinpath(file), archive_folder)
     print("Archive file unpacked successfully.")
 
 def main():
